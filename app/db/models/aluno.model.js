@@ -12,4 +12,21 @@ const Aluno = sequelize.define(name,{
     timestamps: false
 });
 
+Aluno.associate = (models) => {
+    Aluno.belongsTo(models.usuario, {
+        foreignKey: {
+            name: 'id_usuario'
+        },
+        as: 'usuario'
+    })
+    Aluno.belongsToMany(models.hardskill, {
+        through: 'aluno_hardskill',
+        timestamps: false,
+        foreignKey: {
+            name: 'id_aluno'
+        },
+        as: 'hardskills'
+    })
+}
+
 module.exports = Aluno;
