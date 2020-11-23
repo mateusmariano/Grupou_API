@@ -29,8 +29,7 @@ const Usuario = sequelize.define(name,{
     }
 },{
     sequelize,
-    tableName: name,
-    timestamps: false
+    tableName: name
 });
 
 Usuario.associate = (models) => {

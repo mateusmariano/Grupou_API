@@ -2,9 +2,9 @@ const {DataTypes} = require('sequelize');
 const sequelize = require('../index').getConnection();
 const name = require('path').basename(__filename.replace('.model',''),'.js');
 
-const Questao = sequelize.define(name,{
+const SoftSkill = sequelize.define(name,{
     descricao: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING(50),
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -16,16 +16,17 @@ const Questao = sequelize.define(name,{
     }
 },{
     sequelize,
-    tableName: name
+    tableName: name,
 });
 
-Questao.associate = (models) => {
-    Questao.belongsTo(models.usuario, {
+SoftSkill.associate = (models) => {
+    SoftSkill.belongsToMany(models.aluno, {
+        through: 'aluno_softskill',
+        timestamps: false,
         foreignKey: {
-            name: 'id_usuario'
+            name: 'id_softskill'
         },
-        as: 'questao'
+        as: 'alunos'
     })
 }
-
-module.exports = Questao;
+module.exports = SoftSkill;

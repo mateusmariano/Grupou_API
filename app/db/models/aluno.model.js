@@ -8,8 +8,7 @@ const Aluno = sequelize.define(name,{
     }
 },{
     sequelize,
-    tableName: name,
-    timestamps: false
+    tableName: name
 });
 
 Aluno.associate = (models) => {

@@ -1,7 +1,9 @@
 const models = require('../db/models');
 
 exports.index = async() =>{
-    const resultado = await models.usuario.findAll();
+    const resultado = await models.usuario.findAll({
+        include: ['aluno']
+    });
     return resultado;
 }
 exports.show = async(id) =>{
@@ -9,7 +11,9 @@ exports.show = async(id) =>{
     return resultado;
 }
 exports.store = async () =>{
-    const resultado = await models.usuario.create(usuario);
+    const resultado = await models.usuario.create(usuario, {
+        include: ['aluno', 'questoes']
+    });
     return resultado;
 }
 exports.update = async(usuario, id) =>{
@@ -19,7 +23,7 @@ exports.update = async(usuario, id) =>{
     return resultado;
 }
 exports.delete = async(id) =>{
-    const resultado = await models.usuario.destro({
+    const resultado = await models.usuario.destroy({
         where: {id: id}
     });
     return resultado;

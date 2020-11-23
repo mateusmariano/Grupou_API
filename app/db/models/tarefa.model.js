@@ -2,9 +2,9 @@ const {DataTypes} = require('sequelize');
 const sequelize = require('../index').getConnection();
 const name = require('path').basename(__filename.replace('.model',''),'.js');
 
-const Questao = sequelize.define(name,{
+const Tarefa = sequelize.define(name,{
     descricao: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING(50),
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -16,16 +16,15 @@ const Questao = sequelize.define(name,{
     }
 },{
     sequelize,
-    tableName: name
+    tableName: name,
 });
 
-Questao.associate = (models) => {
-    Questao.belongsTo(models.usuario, {
+Tarefa.associate = (models) => {
+    Tarefa.belongsTo(models.usuario, {
         foreignKey: {
             name: 'id_usuario'
         },
-        as: 'questao'
+        as: 'tarefa'
     })
 }
-
-module.exports = Questao;
+module.exports = Tarefa;

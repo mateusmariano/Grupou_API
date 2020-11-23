@@ -7,7 +7,7 @@ db.sequelize.sync({force: true}).then(() => {
     console.log("Tabelas sincronizadas");
 });
 
-app.get(bodyParser.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.get("/api", (req, res) =>{
     res.json({
