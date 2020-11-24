@@ -2,17 +2,16 @@ const {DataTypes} = require('sequelize');
 const sequelize = require('../index').getConnection();
 const name = require('path').basename(__filename.replace('.model',''),'.js');
 
-const Disciplina = sequelize.define(name,{
-    nome:{
-        type: DataTypes.STRING,
-        allowNull: false,   
+const Turma = sequelize.define(name,{
+    codigo:{
+        type: DataTypes.STRING(3),
+        allowNull: false
     },
     descricao: {
         type: DataTypes.STRING(50),
     },
-    codigo:{
-        type: DataTypes.STRING(3),
-        allowNull: false
+    numeroDeAlunos: {
+        type: DataTypes.INTEGER(10),
     }
 },{
     sequelize,
@@ -44,9 +43,9 @@ Turma.associate = (models) => {
         },
         as: 'curso'
     })
-    Turma.hasOne(models.disciplina, {
+    Turma.belongsTo(models.disciplina, {
         foreignKey: {
-            name: 'id_turma'
+            name: 'id_disciplina'
         },
         as: 'disciplina'
     })

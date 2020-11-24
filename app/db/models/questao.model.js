@@ -26,6 +26,18 @@ Questao.associate = (models) => {
         },
         as: 'questao'
     })
+    Questao.belongsTo(models.hardskill, {
+        foreignKey: {
+            name: 'id_hardskill'
+        },
+        as: 'questao'
+    })
+    Questao.hasMany(models.questaoDia, {
+        foreignKey: {
+            name: 'id_questao'
+        },
+        as: 'questoes_dia'
+    })
 }
 
 module.exports = Questao;

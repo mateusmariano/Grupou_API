@@ -24,9 +24,9 @@ const Professor = sequelize.define(name,{
 });
 
 Professor.associate = (models) => {
-    Professor.hasOne(models.usuario, {
+    Professor.belongsTo(models.usuario, {
         foreignKey: {
-            name: 'id_professor'
+            name: 'id_usuario'
         },
         as: 'usuario'
     })
